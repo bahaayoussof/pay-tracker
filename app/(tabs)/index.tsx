@@ -1,12 +1,7 @@
 import "../../global.css";
-import { Text, View } from "react-native";
+import React from "react";
+import TransactionForm from "./TransactionForm";
 
-export default function TabOneScreen() {
-  return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-gray-600">
-        Welcome to Nativewind!
-      </Text>
-    </View>
-  );
+export default function HomeScreen() {
+  return <TransactionForm />;
 }
