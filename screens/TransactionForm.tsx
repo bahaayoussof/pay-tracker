@@ -1,11 +1,12 @@
-import "../../global.css";
+import "../global.css";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Text, View, ScrollView } from "react-native";
-import FormField, { FormFieldConfig } from "../../components/FormField";
-import TransactionType from "../../components/TransactionType";
-import SubmitButton from "../../components/SubmitButton";
+import FormField, { FormFieldConfig } from "../components/FormField";
+import TransactionType from "../components/TransactionType";
+import SubmitButton from "../components/SubmitButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { people } from "../data/peopleData";
 
 export type TransactionFormData = {
   name: string;
@@ -59,8 +60,18 @@ export default function TransactionForm() {
   });
 
   const onSubmit: SubmitHandler<TransactionFormData> = (data) => {
-    console.log("Saving transaction:", data);
-    // TODO: Implement API call or local storage logic to save the data
+    // Find if person exists
+    const idx = people.findIndex((p) => p.name === data.name);
+    const amount = Number(data.amount);
+    if (idx === -1) {
+      people.push({
+        id: String(Date.now()),
+        name: data.name,
+        net: data.type === "received" ? amount : -amount,
+      });
+    } else {
+      people[idx].net += data.type === "received" ? amount : -amount;
+    }
     reset();
   };
 
@@ -86,7 +97,7 @@ export default function TransactionForm() {
         <TransactionType control={control} name="type" />
 
         <SubmitButton
-          title="Save Transaction"
+          title="Save"
           onPress={handleSubmit(onSubmit)}
         />
       </View>

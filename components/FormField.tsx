@@ -8,7 +8,7 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 import ErrorMessage from "./ErrorMessage";
-import { TransactionFormData } from "../app/(tabs)/TransactionForm"; // Adjust path as needed
+import { TransactionFormData } from "../screens/TransactionForm"; // Adjust path as needed
 
 // Define a type for the field configuration
 export type FormFieldConfig = {

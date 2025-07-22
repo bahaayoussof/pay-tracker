@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Controller, Control } from "react-hook-form";
-import { TransactionFormData } from "../app/(tabs)/TransactionForm";
+import { TransactionFormData } from "../screens/TransactionForm";
 
 type SelectorProps = {
   control: Control<TransactionFormData>;
