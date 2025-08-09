@@ -11,13 +11,36 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{}}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { borderTopWidth: 0 },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Transaction",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="home-outline" color={color} />
+          title: "Add Expense",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="people"
+        options={{
+          title: "People",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="auth"
+        options={{
+          title: "Account",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-circle-outline" color={color} size={size} />
           ),
         }}
       />
