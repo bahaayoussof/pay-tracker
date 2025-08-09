@@ -3,6 +3,7 @@ import "../../global.css";
 // @ts-ignore
 import React, { useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-toast-message";
@@ -78,14 +79,17 @@ export default function AddExpenseScreen() {
               name="name"
               rules={{ required: true }}
               render={({ field }: { field: any }) => (
-                <TextInput
-                  className="bg-black/5 dark:bg-white/10 text-neutral-900 dark:text-white rounded-xl px-4 py-3 mb-3"
-                  placeholder="Enter person's name"
-                  placeholderTextColor="#9ca3af"
-                  value={field.value}
-                  onChangeText={field.onChange}
-                  onBlur={field.onBlur}
-                />
+                <View className="flex-row items-center bg-white/60 dark:bg-white/10 rounded-xl px-3 py-3 mb-3 border border-white/40">
+                  <Ionicons name="person-outline" size={18} color="#64748b" />
+                  <TextInput
+                    className="flex-1 ml-2 text-neutral-900 dark:text-white"
+                    placeholder="Enter person's name"
+                    placeholderTextColor="#9ca3af"
+                    value={field.value}
+                    onChangeText={field.onChange}
+                    onBlur={field.onBlur}
+                  />
+                </View>
               )}
             />
 
@@ -97,14 +101,17 @@ export default function AddExpenseScreen() {
               name="occasionType"
               rules={{ required: true }}
               render={({ field }: { field: any }) => (
-                <TextInput
-                  className="bg-black/5 dark:bg-white/10 text-neutral-900 dark:text-white rounded-xl px-4 py-3 mb-3"
-                  placeholder="Wedding / Engagement / Other"
-                  placeholderTextColor="#9ca3af"
-                  value={field.value}
-                  onChangeText={field.onChange}
-                  onBlur={field.onBlur}
-                />
+                <View className="flex-row items-center bg-white/60 dark:bg-white/10 rounded-xl px-3 py-3 mb-3 border border-white/40">
+                  <Ionicons name="pricetag-outline" size={18} color="#64748b" />
+                  <TextInput
+                    className="flex-1 ml-2 text-neutral-900 dark:text-white"
+                    placeholder="Wedding / Engagement / Other"
+                    placeholderTextColor="#9ca3af"
+                    value={field.value}
+                    onChangeText={field.onChange}
+                    onBlur={field.onBlur}
+                  />
+                </View>
               )}
             />
 
@@ -117,11 +124,16 @@ export default function AddExpenseScreen() {
               render={({ field }: { field: any }) => (
                 <>
                   <TouchableOpacity
-                    className="bg-black/5 dark:bg-white/10 rounded-xl px-4 py-3"
+                    className="flex-row items-center bg-white/60 dark:bg-white/10 rounded-xl px-3 py-3 border border-white/40"
                     onPress={() => setShowCalendar(true)}
                     activeOpacity={0.85}
                   >
-                    <Text className="text-neutral-900 dark:text-white">
+                    <Ionicons
+                      name="calendar-outline"
+                      size={18}
+                      color="#64748b"
+                    />
+                    <Text className="ml-2 text-neutral-900 dark:text-white">
                       {new Date(field.value).toLocaleDateString()}
                     </Text>
                   </TouchableOpacity>
@@ -148,15 +160,18 @@ export default function AddExpenseScreen() {
               name="amount"
               rules={{ required: true, pattern: /^[0-9]+(\.[0-9]{1,2})?$/ }}
               render={({ field }: { field: any }) => (
-                <TextInput
-                  className="bg-black/5 dark:bg-white/10 text-neutral-900 dark:text-white rounded-xl px-4 py-3 mb-3"
-                  keyboardType="numeric"
-                  placeholder="0"
-                  placeholderTextColor="#9ca3af"
-                  value={field.value}
-                  onChangeText={field.onChange}
-                  onBlur={field.onBlur}
-                />
+                <View className="flex-row items-center bg-white/60 dark:bg-white/10 rounded-xl px-3 py-3 mb-3 border border-white/40">
+                  <Ionicons name="logo-usd" size={18} color="#64748b" />
+                  <TextInput
+                    className="flex-1 ml-2 text-neutral-900 dark:text-white"
+                    keyboardType="numeric"
+                    placeholder="0"
+                    placeholderTextColor="#9ca3af"
+                    value={field.value}
+                    onChangeText={field.onChange}
+                    onBlur={field.onBlur}
+                  />
+                </View>
               )}
             />
 
@@ -176,9 +191,21 @@ export default function AddExpenseScreen() {
                     }`}
                     onPress={() => field.onChange("payer")}
                   >
-                    <Text className="text-neutral-800 dark:text-white">
-                      Payer
-                    </Text>
+                    <View className="flex-row items-center gap-2">
+                      <Ionicons
+                        name="radio-button-on-outline"
+                        size={16}
+                        color={field.value === "payer" ? "#4f46e5" : "#94a3b8"}
+                      />
+                      <View>
+                        <Text className="text-neutral-800 dark:text-white">
+                          Payer
+                        </Text>
+                        <Text className="text-xs text-neutral-500">
+                          I paid this amount
+                        </Text>
+                      </View>
+                    </View>
                   </TouchableOpacity>
                   <TouchableOpacity
                     className={`flex-1 rounded-xl px-4 py-3 ${
@@ -188,9 +215,23 @@ export default function AddExpenseScreen() {
                     }`}
                     onPress={() => field.onChange("receiver")}
                   >
-                    <Text className="text-neutral-800 dark:text-white">
-                      Receiver
-                    </Text>
+                    <View className="flex-row items-center gap-2">
+                      <Ionicons
+                        name="radio-button-on-outline"
+                        size={16}
+                        color={
+                          field.value === "receiver" ? "#4f46e5" : "#94a3b8"
+                        }
+                      />
+                      <View>
+                        <Text className="text-neutral-800 dark:text-white">
+                          Receiver
+                        </Text>
+                        <Text className="text-xs text-neutral-500">
+                          I received this amount
+                        </Text>
+                      </View>
+                    </View>
                   </TouchableOpacity>
                 </View>
               )}
