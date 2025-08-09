@@ -1,6 +1,5 @@
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
 import { Tabs } from "expo-router";
 
 function TabBarIcon(props: {
@@ -19,15 +18,6 @@ export default function TabLayout() {
           title: "Transaction",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="home-outline" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="list"
-        options={{
-          title: "List",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="document-text-outline" color={color} />
           ),
         }}
       />
