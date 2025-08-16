@@ -2,10 +2,265 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Glassmorphism helpers */
-.glass-card {
-  @apply rounded-2xl border border-white/20 bg-white/40 dark:bg-white/10;
+/* Glassmorphism Event Ledger Design System */
+
+@layer base {
+  :root {
+    /* Light Mode - Clean Grey Glassmorphism */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(210 20% 95%),
+      hsl(220 15% 97%)
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.1)
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.2)
+    );
+    --gradient-button: linear-gradient(
+      135deg,
+      hsl(210 15% 25%),
+      hsl(220 20% 35%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(210 25% 45%),
+      hsl(220 30% 55%)
+    );
+
+    /* Clean Grey Base */
+    --background: 210 20% 95%;
+    --foreground: 210 25% 15%;
+    --glass-bg: 0 0% 100% / 0.25;
+    --glass-border: 0 0% 100% / 0.4;
+    --glass-shadow: 0 0% 0% / 0.08;
+
+    /* Card Glassmorphism */
+    --card: 0 0% 100% / 0.35;
+    --card-foreground: 210 25% 15%;
+    --card-border: 0 0% 100% / 0.45;
+
+    /* Interactive Elements - Grey Tones */
+    --primary: 210 20% 30%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 20% 60%;
+
+    --secondary: 210 15% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 210 15% 75%;
+
+    --accent: 220 25% 45%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 220 25% 65%;
+
+    /* Status Colors */
+    --success: 140 50% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 35 85% 55%;
+    --warning-foreground: 30 40% 15%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Neutral Glassmorphism */
+    --muted: 210 10% 50% / 0.15;
+    --muted-foreground: 210 15% 40%;
+    --border: 0 0% 100% / 0.3;
+    --input: 0 0% 100% / 0.2;
+    --ring: 210 20% 30%;
+
+    /* Glass Effects */
+    --blur-glass: blur(16px);
+    --blur-subtle: blur(8px);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 30px rgba(30, 30, 30, 0.2);
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark Mode - Borderless Glassmorphism with Pure Shadows */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(210 15% 8%),
+      hsl(220 20% 12%)
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.04)
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.06)
+    );
+    --gradient-button: linear-gradient(
+      135deg,
+      hsl(210 15% 65%),
+      hsl(220 20% 75%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(210 25% 55%),
+      hsl(220 30% 65%)
+    );
+
+    /* Rich Dark Grey Background */
+    --background: 210 15% 8%;
+    --foreground: 210 20% 92%;
+    --glass-bg: 255 255 255 / 0.06;
+    --glass-border: 255 255 255 / 0; /* No borders */
+    --glass-shadow: 0 0% 0% / 0.4;
+
+    /* Enhanced Card Glassmorphism - No Borders */
+    --card: 255 255 255 / 0.08;
+    --card-foreground: 210 20% 92%;
+    --card-border: transparent; /* Completely transparent borders */
+
+    /* Dark Grey Interactive Elements */
+    --primary: 210 20% 75%;
+    --primary-foreground: 210 25% 15%;
+    --primary-glow: 210 20% 55%;
+
+    --secondary: 210 15% 65%;
+    --secondary-foreground: 210 25% 15%;
+    --secondary-glow: 210 15% 45%;
+
+    --accent: 220 25% 70%;
+    --accent-foreground: 220 30% 15%;
+    --accent-glow: 220 25% 50%;
+
+    /* Enhanced Status Colors */
+    --success: 140 55% 60%;
+    --success-foreground: 140 40% 15%;
+    --warning: 35 90% 65%;
+    --warning-foreground: 30 40% 15%;
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 0 40% 15%;
+
+    /* Rich Neutral Glassmorphism - No Borders */
+    --muted: 255 255 255 / 0.06;
+    --muted-foreground: 210 15% 70%;
+    --border: transparent; /* No borders in dark mode */
+    --input: 255 255 255 / 0.06;
+    --ring: 210 20% 75%;
+
+    /* Enhanced Glass Effects - Stronger Shadows */
+    --shadow-glass: 0 16px 48px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 32px 64px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 48px rgba(100, 100, 100, 0.25);
+  }
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-primary);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Enhanced Glassmorphism Base Styles */
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/25 border border-card-border rounded-2xl shadow-glass;
+    background: var(--gradient-card);
+  }
+
+  /* Dark mode: borderless glass cards */
+  .dark .glass-card {
+    @apply border-0 shadow-elevated;
+  }
+
+  .glass-button {
+    @apply backdrop-blur-sm border border-primary/20 rounded-xl
+           hover:shadow-glow transition-all duration-300;
+    background: var(--gradient-glass);
+  }
+
+  /* Dark mode: borderless glass buttons */
+  .dark .glass-button {
+    @apply border-0 shadow-glass hover:shadow-elevated;
+  }
+
+  .glass-input {
+    @apply flex-row items-center px-3 py-3 backdrop-blur-sm border border-border rounded-xl
+           focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-primary/25 transition-all duration-200 bg-white/60 dark:bg-white/10;
+  }
+
+  /* Dark mode: borderless glass inputs */
+  .dark .glass-input {
+    @apply border-0 shadow-glass focus:shadow-elevated focus:ring-0;
+  }
+
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-heading {
+    @apply text-neutral-800 dark:text-white;
+  }
+  .text-label {
+    @apply text-neutral-700 dark:text-neutral-200;
+  }
+  .text-subtle {
+    @apply text-neutral-500 dark:text-neutral-400;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
